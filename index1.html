@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th{
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+        }
+        td {
+            text-align: left;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+<body>
+<h3>Add New Product</h3>
+<input type="text" id="addName" placeholder="New product"/>
+<button type="button" onclick="Them(document.getElementById('addName').value)"> Add</button>
+<div id="product"></div>
+
+<script>
+    let product = ["Iphone","Samsung","Nokia","Sony"];
+    function hienThi() {
+        let hienThi = "<table>";
+        hienThi += "<th> <h2>Display All Product </h2> </th>"
+        hienThi += "<tr><td> STT </td>  <td> Ten San Pham</td> <td>Chỉnh Sửa</td> <td>Xóa</td></tr>";
+
+        for (let i=0; i<product.length; i++) {
+            let stt = i+1;
+            hienThi += '<tr><td>'+stt+'</td><td>'+ product[i] + '</td>' + '<td><button type="button" onclick="Sua('+ i +')"> Edit</button></td>'+ '<td><button type="button" onclick="Xoa('+ i +')">Delete</button></td>'+'</tr>';
+        }
+        hienThi+= "</table>";
+        document.getElementById("product").innerHTML = hienThi;
+    }
+    function Them(x) {
+        product.push(x);
+        document.getElementById("product").innerHTML = "<p></p>";
+        hienThi();
+    }
+    function Sua(x) {
+        let y = prompt("nhap ten san pham moi:");
+        product[x] = y;
+        document.getElementById("product").innerHTML = "<p></p>";
+        hienThi();
+    };
+    function Xoa(x) {
+        product.splice(x,1);
+        document.getElementById("product").innerHTML = "<p></p>";
+        hienThi();
+    }
+
+    hienThi();
+
+</script>
+</body>
+</html>
